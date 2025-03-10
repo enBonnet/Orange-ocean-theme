@@ -6,9 +6,12 @@
   "engines": {
     "vscode": "^1.98.0"
   },
+  "repository": "https://github.com/enBonnet/Orange-ocean-theme",
   "categories": [
     "Themes"
   ],
+  "author": "enBonnet",
+  "publisher": "enBonnet",
   "contributes": {
     "themes": [
       {
