@@ -1,24 +1,62 @@
 {
-  "name": "orange-ocean",
-  "displayName": "Orange Ocean",
-  "description": "Orange theme",
-  "version": "0.0.1",
-  "engines": {
-    "vscode": "^1.98.0"
-  },
-  "repository": "https://github.com/enBonnet/Orange-ocean-theme",
-  "categories": [
-    "Themes"
-  ],
-  "author": "enBonnet",
-  "publisher": "enBonnet",
-  "contributes": {
-    "themes": [
-      {
-        "label": "Orange ocean",
-        "uiTheme": "vs-dark",
-        "path": "./themes/Orange ocean-color-theme.json"
-      }
-    ]
-  }
+	"name": "orange-ocean",
+	"version": "0.0.2",
+	"displayName": "Orange Ocean Theme",
+	"description": "Orange flavores dark theme",
+	"publisher": "enbonnet",
+	"license": "MIT",
+	"scripts": {
+		"clean": "rm -rf build",
+		"compile": "bun run clean && tsc",
+		"build": "mkdir -p ./theme && ts-node ./src/build.ts",
+		"attach": "./bootstrap.sh attach",
+		"eject": "./bootstrap.sh eject",
+		"dev": "bun run eject && bun run build && bun run attach",
+		"vscode:prepublish": "bun run build",
+		"format": "prettier --write 'src/**/*.ts'"
+	},
+	"maintainers": [
+		"Ender Bonnet <enbonnet@gmail.com>"
+	],
+	"contributors": [],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/enBonnet/Orange-ocean-theme.git"
+	},
+	"bugs": {
+		"url": "https://github.com/enBonnet/Orange-ocean-theme/issues"
+	},
+	"engines": {
+		"vscode": "^1.13.0"
+	},
+	"categories": [
+		"Themes"
+	],
+	"keywords": [
+		"orange",
+		"dark",
+		"theme",
+		"color-theme"
+	],
+	"icon": "orange-ocean.png",
+	"galleryBanner": {
+		"color": "#0e1419",
+		"theme": "dark"
+	},
+	"contributes": {
+		"themes": [
+			{
+				"label": "Orange Ocean",
+				"uiTheme": "vs-dark",
+				"path": "./theme/orange-ocean-theme.json"
+			}
+		]
+	},
+	"devDependencies": {
+		"@types/node": "^10.5.8",
+		"ts-node": "^7.0.1",
+		"tslint": "^5.11.0",
+		"tslint-config-prettier": "^1.14.0",
+		"typescript": "^3.9.10"
+	}
 }

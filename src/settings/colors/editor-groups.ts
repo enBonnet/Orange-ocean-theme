@@ -1,0 +1,21 @@
+// See: https://code.visualstudio.com/docs/getstarted/theme-color-reference#_editor-groups-tabs
+export default () => ({
+  'editorGroup.border': '#444444',
+  'editorGroup.dropBackground': null,
+  'editorGroupHeader.noTabsBackground': null,
+  'editorGroupHeader.tabsBackground': '#040d10',
+  'editorGroupHeader.tabsBorder': null,
+  'tab.activeBackground': '#ea6c0b',
+  'tab.activeForeground': '#ffffff',
+  'tab.border': '#040d10',
+  'tab.activeBorder': '#00000000',
+  'tab.unfocusedActiveBorder': null,
+  'tab.inactiveBackground': '#040d10',
+  'tab.inactiveForeground': '#ffffff80',
+  'tab.unfocusedActiveForeground': null,
+  'tab.unfocusedInactiveForeground': null,
+  'tab.hoverBackground': null,
+  'tab.unfocusedHoverBackground': null,
+  'tab.hoverBorder': null,
+  'tab.unfocusedHoverBorder': null,
+});

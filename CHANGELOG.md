@@ -1,9 +1,10 @@
-# Change Log
+# Changelog
 
-All notable changes to the "orange-ocean" extension will be documented in this file.
+## 0.0.2
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+- Migrate cose base to increase compatibility
 
-## [Unreleased]
+## 0.0.1
 
-- Initial release
+Initial release!
+

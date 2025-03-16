@@ -1,16 +1,30 @@
-# orange-ocean README
+# Orange Ocean Theme
 
-## Working with Markdown
+## Compatible:
+- [Visual Studio Code](http://code.visualstudio.com)
+- [Windsuft](https://codeium.com/windsurf)
+- [Cursor](https://www.cursor.com)
 
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
+## Screenshots
 
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
+![Screenshot](//...)
+![Screenshot](//...)
 
-## For more information
+## Install
 
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
+1. Go to `View -> Command Palette` or press `⌘+shift+P`
+2. Then enter `Install Extension`
+3. Write `orange-ocean`
+4. Select it or press Enter to install
 
-**Enjoy!**
+## Contributing
+
+If you'd like to contribute to this theme, please read the [contributing guidelines](./.github/CONTRIBUTING.md).
+
+## Inspiration
+- [Night owl vscode](https://github.com/sdras/night-owl-vscode-theme/)
+- [Dracula at night](https://github.com/bceskavich/dracula-at-night/)
+
+## License
+
+[MIT License](./LICENSE)
