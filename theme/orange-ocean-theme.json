@@ -7,16 +7,16 @@
   "type": "dark",
   "colorVars": {
     "base": {
-      "bg": "",
-      "fg": "",
-      "cyan": "",
-      "green": "",
-      "orange": "",
-      "pink": "",
-      "purple": "",
-      "red": "",
-      "yellow": "",
-      "white": ""
+      "bg": "#051014",
+      "fg": "#f8f4f9",
+      "cyan": "#2a7f7f",
+      "green": "#49fe31",
+      "orange": "#d2691e",
+      "pink": "#9c4458",
+      "purple": "#462b6d",
+      "red": "#e93e3e",
+      "yellow": "#fcae32",
+      "white": "#ebedeb"
     },
     "ansi": {
       "color0": "",
