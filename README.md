@@ -7,8 +7,9 @@
 
 ## Screenshots
 
-![Screenshot](//...)
-![Screenshot](//...)
+|VS Code|Cursor|Windsurf|
+|---|---|---|
+|![Screenshot](./screenshots/vscode.png)|![Screenshot](./screenshots/cursor.png)|![Screenshot](./screenshots/windsurf.png)|
 
 ## Install
 

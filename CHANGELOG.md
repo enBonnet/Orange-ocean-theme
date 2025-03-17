@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.4
+
+- README changes, screenshots added
+
 ## 0.0.3
 
 - Add base colors
