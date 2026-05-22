@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Language Scoping Fixes | Orange Ocean Theme</title>
+  <meta name="description" content="TextMate scoping rules for each language supported by the Orange Ocean VS Code theme.">
+  <link rel="icon" type="image/png" href="images/icon.png">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .page-header {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 120px 2rem 40px;
+    }
+
+    .page-header h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--orange), var(--orange-glow), var(--teal-bright));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.75rem;
+    }
+
+    .page-header p {
+      font-size: 1.1rem;
+      color: var(--fg);
+      opacity: 0.7;
+      max-width: 600px;
+      margin: 0 auto;
+      font-weight: 300;
+    }
+
+    .search-container {
+      position: relative;
+      z-index: 1;
+      max-width: 500px;
+      margin: 0 auto 3rem;
+      padding: 0 2rem;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 0.85rem 1.25rem;
+      background: var(--bg);
+      border: 1px solid var(--orange-dim)30;
+      border-radius: 10px;
+      color: var(--fg-bright);
+      font-family: 'Outfit', sans-serif;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .search-input::placeholder {
+      color: var(--fg);
+      opacity: 0.45;
+    }
+
+    .search-input:focus {
+      border-color: var(--orange);
+      box-shadow: 0 0 0 3px var(--orange)18;
+    }
+
+    .lang-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.25rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+    }
+
+    .lang-card {
+      background: var(--bg-light);
+      border: 1px solid var(--bg-lighter);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .lang-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      border-color: var(--orange-dim)30;
+    }
+
+    .lang-name {
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--fg-bright);
+      margin-bottom: 0.75rem;
+    }
+
+    .scope-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .scope-badge {
+      display: inline-block;
+      background: var(--teal-dark)40;
+      color: var(--teal-bright);
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+      font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+      font-size: 0.8rem;
+      font-weight: 400;
+    }
+
+    .empty-state {
+      display: none;
+      text-align: center;
+      grid-column: 1 / -1;
+      padding: 3rem 2rem;
+      color: var(--fg);
+      opacity: 0.5;
+      font-size: 1.05rem;
+    }
+
+    .empty-state.visible {
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .page-header {
+        padding: 100px 1.5rem 30px;
+      }
+
+      .page-header h1 {
+        font-size: 2rem;
+      }
+
+      .lang-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <img src="images/icon.png" alt="Orange Ocean icon">
+      Orange Ocean
+    </a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="languages.html" class="active">Language Fixes</a>
+      <a href="https://github.com/enBonnet/Orange-ocean-theme" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-header">
+  <h1>Language Scoping Fixes</h1>
+  <p>Explicit TextMate scopes mapped for consistent semantic highlighting across 18 languages. Additional languages are covered by general-purpose fallback rules.</p>
+</section>
+
+<div class="search-container">
+  <input type="text" class="search-input" placeholder="Search languages or scopes..." id="searchInput">
+</div>
+
+<div class="lang-grid" id="langGrid">
+  <div class="empty-state" id="emptyState">No languages match your search.</div>
+</div>
+
+<footer>
+  <p>Crafted with &#x1F525; by <a href="https://github.com/enBonnet">Ender Bonnet</a>. Licensed under <a href="https://github.com/enBonnet/Orange-ocean-theme/blob/main/LICENSE">MIT</a>.</p>
+</footer>
+
+<script>
+  const languages = [
+    {
+      name: "C",
+      scopes: [
+        "storage.type.c",
+        "meta.implementation storage.type.objc"
+      ]
+    },
+    {
+      name: "C#",
+      scopes: [
+        "keyword.type.cs",
+        "storage.type.cs",
+        "punctuation.definition.tag.cs",
+        "storage.type.generic.java",
+        "source.java storage.type"
+      ]
+    },
+    {
+      name: "CoffeeScript",
+      scopes: [
+        "punctuation.section.embedded.coffee",
+        "meta.variable.assignment.destructured.object.coffee variable"
+      ]
+    },
+    {
+      name: "CSS / SCSS",
+      scopes: [
+        "meta.selector",
+        "entity.other.attribute-name.parent-selector",
+        "meta.attribute-selector.scss",
+        "entity.other.attribute-name",
+        "support.constant.property-value.css",
+        "keyword.control.at-rule.media.scss",
+        "punctuation.separator.list.comma.css"
+      ]
+    },
+    {
+      name: "Diff",
+      scopes: [
+        "meta.diff",
+        "meta.diff.header",
+        "markup.inserted",
+        "markup.deleted",
+        "markup.changed"
+      ]
+    },
+    {
+      name: "Elixir",
+      scopes: [
+        "entity.name.function.elixir",
+        "constant.other.symbol.elixir",
+        "entity.name.type.module.elixir",
+        "variable.other.readwrite.module.elixir",
+        "punctuation.separator.method.elixir",
+        "punctuation.section.embedded.elixir"
+      ]
+    },
+    {
+      name: "Go",
+      scopes: [
+        "punctuation.other.period.go",
+        "punctuation.other.colon.go",
+        "source.go storage.type",
+        "entity.name.type.go",
+        "entity.name.function.go",
+        "support.function.go"
+      ]
+    },
+    {
+      name: "HTML / JSX / TSX",
+      scopes: [
+        "entity.name.tag",
+        "entity.name.tag support.class.component",
+        "punctuation.definition.tag.begin",
+        "punctuation.definition.tag.end",
+        "punctuation.section.embedded.begin",
+        "punctuation.section.embedded.end"
+      ]
+    },
+    {
+      name: "Java",
+      scopes: [
+        "meta.method-call.java meta.method",
+        "storage.type.generic.java",
+        "source.java storage.type",
+        "keyword.operator.dereference.java",
+        "storage.modifier.import"
+      ]
+    },
+    {
+      name: "JavaScript",
+      scopes: [
+        "support.variable.property.js",
+        "variable.other.constant.js",
+        "support.class.console.js",
+        "support.type.object.module.js",
+        "support.class.promise.js",
+        "meta.function-call.js"
+      ]
+    },
+    {
+      name: "Makefile",
+      scopes: [
+        "punctuation.definition.variable.makefile",
+        "entity.name.function.target.makefile",
+        "meta.scope.prerequisites.makefile"
+      ]
+    },
+    {
+      name: "Markdown",
+      scopes: [
+        "markup.underline",
+        "markup.bold",
+        "markup.heading",
+        "markup.italic",
+        "markup.inline.raw",
+        "markup.underline.link",
+        "markup.quote",
+        "fenced_code.block.language"
+      ]
+    },
+    {
+      name: "Objective-C",
+      scopes: [
+        "meta.implementation storage.type.objc",
+        "meta.interface-or-protocol storage.type.objc",
+        "meta.protocol-list.objc",
+        "meta.return-type.objc",
+        "storage.type.objc"
+      ]
+    },
+    {
+      name: "Python",
+      scopes: [
+        "entity.name.function.python",
+        "meta.function-call.python support.type.python",
+        "meta.function-call.python support.function.builtin.python",
+        "punctuation.separator.period.python",
+        "punctuation.separator.colon.python",
+        "punctuation.separator.dict.python"
+      ]
+    },
+    {
+      name: "Shell",
+      scopes: [
+        "source.shell variable.other",
+        "meta.scope.for-loop.shell punctuation.definition.string.begin",
+        "meta.scope.for-loop.shell punctuation.definition.string.end",
+        "meta.scope.for-loop.shell string"
+      ]
+    },
+    {
+      name: "TOML",
+      scopes: [
+        "meta.group.double.toml",
+        "meta.group.toml",
+        "entity.name.section.toml",
+        "entity.name.tag.yaml",
+        "variable.other.key.toml"
+      ]
+    },
+    {
+      name: "TypeScript",
+      scopes: [
+        "support.variable.property.ts",
+        "variable.other.constant.ts",
+        "support.class.console.ts",
+        "entity.name.type.alias.ts",
+        "entity.name.type.interface.ts",
+        "entity.name.type.enum.ts",
+        "meta.type.parameters.ts",
+        "punctuation.definition.typeparameters.begin.ts"
+      ]
+    },
+    {
+      name: "YAML",
+      scopes: [
+        "punctuation.definition.block.scalar.folded.yaml",
+        "punctuation.definition.block.scalar.literal.yaml",
+        "punctuation.definition.block.sequence.item.yaml",
+        "punctuation.separator.key-value.mapping.yaml",
+        "entity.name.tag.yaml",
+        "variable.other.alias.yaml"
+      ]
+    }
+  ];
+
+  const langGrid = document.getElementById('langGrid');
+  const emptyState = document.getElementById('emptyState');
+  const searchInput = document.getElementById('searchInput');
+
+  function renderCards(filterText) {
+    langGrid.querySelectorAll('.lang-card').forEach(function(el) { el.remove(); });
+
+    var query = (filterText || '').toLowerCase();
+    var filtered = languages.filter(function(lang) {
+      if (!query) return true;
+      return lang.name.toLowerCase().indexOf(query) !== -1 ||
+        lang.scopes.some(function(s) { return s.toLowerCase().indexOf(query) !== -1; });
+    });
+
+    if (filtered.length === 0) {
+      emptyState.classList.add('visible');
+    } else {
+      emptyState.classList.remove('visible');
+    }
+
+    filtered.forEach(function(lang) {
+      var card = document.createElement('div');
+      card.className = 'lang-card';
+
+      var nameEl = document.createElement('div');
+      nameEl.className = 'lang-name';
+      nameEl.textContent = lang.name;
+      card.appendChild(nameEl);
+
+      var badges = document.createElement('div');
+      badges.className = 'scope-badges';
+
+      lang.scopes.forEach(function(scope) {
+        var badge = document.createElement('span');
+        badge.className = 'scope-badge';
+        badge.textContent = scope;
+        badges.appendChild(badge);
+      });
+
+      card.appendChild(badges);
+      langGrid.appendChild(card);
+    });
+  }
+
+  searchInput.addEventListener('input', function() {
+    renderCards(this.value);
+  });
+
+  renderCards('');
+</script>
+
+</body>
+</html>
